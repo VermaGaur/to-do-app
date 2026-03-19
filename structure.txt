@@ -1,0 +1,27 @@
+STRUCTURE OF CARD 
+cards=[
+  {
+    title: "Work",
+    tasks: [
+      { text: "Meeting", done: false }
+    ]
+  },
+  {
+    title: "Work",
+    tasks: [
+      { text: "Meeting", done: false }
+    ]
+  },
+  {
+    title: "Work",
+    tasks: [
+      { text: "Meeting", done: false }
+    ]
+  },
+  {
+    title: "Work",
+    tasks: [
+      { text: "Meeting", done: false }
+    ]
+  }
+]
