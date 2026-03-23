@@ -12,9 +12,9 @@
     <style>
         .task-done {
             text-decoration: line-through;
-            color: gray;
+            color: rgb(86, 82, 104);
         }
-
+         
         .card {
             transition:  0.3s ease;
         }
@@ -23,7 +23,10 @@
             transform: translateY(-6px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         }
-
+.card-header {
+    color: white;
+     background: linear-gradient(145deg, #848da0, #aaa9a9);
+}
         .btn {
             transition: all 0.2s ease;
         }
@@ -37,12 +40,14 @@
         }
 
         .list-group-item:hover {
-            background-color: #eef3ff;
+            background-color: #848da0;
         }
 
         .overflow-hidden {
             overflow: hidden;
         }
+
+
     </style>
 </head>
 
@@ -50,17 +55,21 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-dark bg-dark px-4 shadow">
-        <span class="navbar-brand fw-bold">📋 To Do App</span>
+        <!-- <span class="navbar-brand fw-bold">📜 To Do App</span> -->
+        <span class="navbar-brand fw-bold"> <img src="3248209.png" style="width:40px">To Do App</span>
+" alt=""> To Do App</span>
 
         <div class="input-group w-auto">
-            <span class="input-group-text">🔍</span>
+            <!-- <span class="input-group-text">🔍</span> -->
+                        <span class="input-group-text"><img src="explore.png" alt="" style="width:22px"></span>
+
             <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchCards()">
         </div>
     </nav>
 
     <!-- MAIN -->
     <div class="container mt-4">
-        <h2 class="text-center text-white fw-bold mb-4">My To-Do's🚀</h2>
+        <h2 class="text-center text-white fw-bold mb-4">My To-Do's <img src="daily-tasks.png" alt="" style="width:55px"></h2>
 
         <!-- Add Card -->
         <div class="input-group mb-3 shadow-sm">
@@ -72,13 +81,13 @@
         <p id="errorMsg" class="text-danger text-center"></p>
 
         <!-- Cards -->
-        <div id="cardContainer" class="row g-3"></div>
+        <div id="cardContainer" class="row g-3"  ></div>
     </div>
 
     <!-- TOAST -->
     <div class="toast position-fixed bottom-0 end-0 p-3" style="z-index: 9999;" id="confirmToast">
-        <div class="toast-body bg-warning text-dark rounded shadow">
-            <div class="mb-2">Are you sure to delete this card?</div>
+        <div class="toast-body text-dark rounded shadow" style=" background-color: rgb(44, 44, 68) ">
+            <div class="mb-2" style="color:white">Are you sure to delete this card?</div>
 
             <div class="d-flex justify-content-end gap-2">
                 <button class="btn btn-sm btn-secondary" id="cancelDeleteBtn">No</button>
@@ -87,7 +96,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -98,7 +107,7 @@
             localStorage.setItem("cards", JSON.stringify(cards));
         }
 
-        // ✅ Add Card
+        // Add Card
         function addCard() {
             const input = document.getElementById("cardTitle");
             const error = document.getElementById("errorMsg");
@@ -121,7 +130,7 @@
             render();
         }
 
-        // ✅ Add Task
+        //  Add Task
         function addTask(cIndex) {
             const input = document.getElementById(`taskInput-${cIndex}`);
             const text = input.value.trim();
@@ -147,7 +156,7 @@
             render();
         }
 
-        // ✅ Delete Card (Toast)
+        //  Delete Card (Toast)
         function deleteCard(cIndex) {
             deleteIndex = cIndex;
             toastInstance.show();
@@ -170,7 +179,7 @@
             toastInstance.hide();
         };
 
-        // ✅ Search
+        //  Search
         function searchCards() {
             const query = document.getElementById("searchInput").value.toLowerCase();
 
@@ -181,7 +190,7 @@
             render(filtered);
         }
 
-        // ✅ Render
+        // Render
         function render(data = cards) {
             const container = document.getElementById("cardContainer");
             container.innerHTML = "";
@@ -191,10 +200,9 @@
 
                 const col = document.createElement("div");
                 col.className = "col-md-4";
-
                 col.innerHTML = `
-        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
-          <div class="card-header d-flex justify-content-between bg-light">
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden"  >
+          <div class="card-header d-flex justify-content-between">
             <strong class="text-truncate" style="max-width: 80%;">${card.title}</strong>
             <button class="btn btn-sm btn-danger" onclick="deleteCard(${realIndex})">X</button>
           </div>
@@ -207,7 +215,7 @@
                 placeholder="Add task"
                 onkeypress="if(event.key==='Enter'){event.preventDefault(); addTask(${realIndex})}">
               
-              <button class="btn btn-primary" onclick="addTask(${realIndex})">+</button>
+              <button class="btn " style="background-color: rgb(82, 82, 110); color:white" onclick="addTask(${realIndex})">+</button>
             </div>
 
             <ul class="list-group">
@@ -234,7 +242,7 @@
             });
         }
 
-        // ✅ Enter for card input
+        //Enter for card input
         document.getElementById("cardTitle").addEventListener("keypress", function (e) {
             if (e.key === "Enter") {
                 // e.preventDefault();
@@ -246,5 +254,4 @@
     </script>
 
 </body>
-
 </html>
